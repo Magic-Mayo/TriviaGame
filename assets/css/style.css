@@ -1,0 +1,36 @@
+body {
+    background-image: url("../images/Wiki-background.jpg");
+    background-color: #10600f;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    left: 6%;
+    top: 50vh;
+    color: #000000
+}
+
+.quote {
+    font-size: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: bisque;
+}
+
+.quote-top {
+    top: 1vh;
+    left: 25%;
+}
+
+.quote-bottom {
+    bottom: 1vh;
+    right: 25%;
+}
+
+.answers {
+    opacity: 1;
+}
