@@ -2,59 +2,97 @@ window.onload = function(){
 
 }
 
-trivia = {
-    questions: ['Who shot Ron?', 'What is the objective of the game Cones of Dunshire?'],
-    correctAnswers: ['Tom', 'Nothing'],
-    incorrectAnswers: [{
-        Ron: ['Leslie', 'Jerry', 'Andy']}, {
-        Cones: []},
+const trivia = [{
+    question: 'Who shot Ron?',
+    answers: ['Tom', 'Leslie', 'Jerry', 'Andy'],
+    correctAnswer: 'Tom'},{
 
-    
-    ]
-}
+    question: 'What is the objective of the game Cones of Dunshire?',
+    answers: [],
+    correctAnswer: ''},{
+        
+    question: 'Where was Leslie Knope born?',
+    answers: [],
+    correctAnswer: 'Eagleton'},{
 
-let rndAnswer = []
-let answers = []
-const rightAnswer = $('.btn').attr('id', 'true');
-function assignTrue(){
-    for (let i = 0; i < trivia.correctAnswers; i++){
-        rightAnswer.addClass(trivia.correctAnswers[i]);
-        console.log(rightAnswer)
-    }
-}
-assignTrue();
+    question: 'What is Leslie\'s middle name?',
+    answers: [],
+    correctAnswer: 'Barbara'},{
 
-function rndChoices(){
-    for (i in trivia.incorrectAnswers[0] && trivia.correctAnswers[0])
-    answers.push(trivia.incorrectAnswers[0].Ron[i]);
-    answers.push(trivia.correctAnswers[0]);
-    const tmp2 = answers.slice(answers);
-    for (let j = 0; j < 4; j++){
-        const index = Math.floor(Math.random() * tmp2.length);
-        const rmv = tmp2.splice(index, 1);
-        rndAnswer.push(rmv[0]);
-    }
-}
-rndChoices();
+    question: 'Where did Andy live after he broke up with Ann?',
+    answers: [],
+    correctAnswer: 'The pit'},{
 
-function writeAnswers(){
-    for (let i = 0; i < rndAnswer.length; i++){
-        console.log(trivia.correctAnswers)
-        console.log(trivia.correctAnswers.includes(String(rndAnswer[i])))
-        if (!trivia.correctAnswers.includes(String(rndAnswer[i]))){
-            $('.answers').append('<div class="row"><button type="button" class="btn">' + rndAnswer[i] + '</button></div>')
+    question: 'How many albums did Duke Silver release?',
+    answers: [],
+    correctAnswer: ''},{
+
+    question: 'Who is Pawnee\'s town mascot?',
+    answers: [],
+    correctAnswer: 'Lil\' Sebastian'},{
+
+    question: 'Tom\'s ex-wife',
+    answers: [],
+    correctAnswer: ''},{
+
+    question: 'What do you do if you\'re feeling down?',
+    answers: [],
+    correctAnswer: 'Treat yo\' self'},{
+
+    question: '',
+    answers: [],
+    correctAnswer: ''}]
+
+const parksRec = {
+    triviaQ: trivia,
+    question: 0,
+    qCount: 10,
+    rightAnswer: 0,
+    wrongAnswer: 0,
+    timeOut: 0,
+
+    trivQs: function(){
+        setInterval(parksRec.qCount, 1000)
+        $('.question').html('<h2>' + parksRec.question)
+        for (i in trivia[parksRec.triviaQ].answers.length){
+            $('.answer').append('<button class="btn" type="button">' + trivia[parksRec.triviaQ].answers[i] + '</button>')
         }
-        if (trivia.correctAnswers.includes(String(rndAnswer[i]))){
-            $('.answers').append('<div class="row true"><button type="button" class="btn">' + rndAnswer[i] + '</button></div>')
+    },
+
+    nextQ: function(){
+        this.question++;
+
+    },
+
+    correct: function(){
+        if ($(this).on('click') == trivia[parksRec.question].correctAnswer){
+            $('.show').html('Great!');
         }
+        else {
+            parksRec.incorrect;
+        }
+        clearInterval()
+    },
+
+    incorrect: function(){
+        $('.show').html('<h1>Knope!</h1>');
+    },
+
+    timeUp: function(){
+        if (this.qCount <= 0){
+            $('.show').html('<h1>You ran out of time!</h1>')
+            this.trivQs;
+        }
+    },
+
+    gameClock: function(){
+        qCount--;
+
     }
 }
-writeAnswers();
-
 $('.true').on('click', function(){
         console.log('this')
 })
-console.log(rndAnswer)
 // Set interval and loop for cycling thru quotes
 
 // 
