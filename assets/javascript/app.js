@@ -1,63 +1,60 @@
 window.onload = function(){
-    // assignTrue();
+
 }
 
 trivia = {
     questions: ['Who shot Ron?', 'What is the objective of the game Cones of Dunshire?'],
     correctAnswers: ['Tom', 'Nothing'],
     incorrectAnswers: [{
-        Ron: ['Leslie', 'Jerry', 'Andy'], 
-        Cones: []
+        Ron: ['Leslie', 'Jerry', 'Andy']}, {
+        Cones: []},
+
     
-    }]
+    ]
 }
 
 let rndAnswer = []
 let answers = []
-
+const rightAnswer = $('.btn').attr('id', 'true');
 function assignTrue(){
-    // const a = $(this).data('right')
-    for (i in trivia.correctAnswers){
-        $(this).attr('id', 'true')
+    for (let i = 0; i < trivia.correctAnswers; i++){
+        rightAnswer.addClass(trivia.correctAnswers[i]);
+        console.log(rightAnswer)
     }
 }
+assignTrue();
 
-function getAnswers(){
-    const tmp = trivia.incorrectAnswers[0].Ron.slice(trivia.incorrectAnswers[0].Ron);
-    
-    for (let i = 0; i < 3; i++) {
-        const index = Math.floor(Math.random() * tmp.length);
-        const rmv = tmp.splice(index, 1);
-        answers.push(rmv[0]);
-    }
+function rndChoices(){
+    for (i in trivia.incorrectAnswers[0] && trivia.correctAnswers[0])
+    answers.push(trivia.incorrectAnswers[0].Ron[i]);
     answers.push(trivia.correctAnswers[0]);
-}
-
-function rndChoice(){
-    getAnswers();
     const tmp2 = answers.slice(answers);
     for (let j = 0; j < 4; j++){
         const index = Math.floor(Math.random() * tmp2.length);
         const rmv = tmp2.splice(index, 1);
         rndAnswer.push(rmv[0]);
     }
-    assignTrue()
 }
-rndChoice();
+rndChoices();
 
 function writeAnswers(){
     for (let i = 0; i < rndAnswer.length; i++){
-        $('.answers').append('<div class="row">' + rndAnswer[i] + '</div>')
+        console.log(trivia.correctAnswers)
+        console.log(trivia.correctAnswers.includes(String(rndAnswer[i])))
+        if (!trivia.correctAnswers.includes(String(rndAnswer[i]))){
+            $('.answers').append('<div class="row"><button type="button" class="btn">' + rndAnswer[i] + '</button></div>')
+        }
+        if (trivia.correctAnswers.includes(String(rndAnswer[i]))){
+            $('.answers').append('<div class="row true"><button type="button" class="btn">' + rndAnswer[i] + '</button></div>')
+        }
     }
 }
+writeAnswers();
 
-$('.answers').on('click', function(){
-    if ($(this).data('right')){
+$('.true').on('click', function(){
         console.log('this')
-    }
 })
 console.log(rndAnswer)
-writeAnswers();
 // Set interval and loop for cycling thru quotes
 
 // 
