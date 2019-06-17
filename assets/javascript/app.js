@@ -185,9 +185,9 @@ const rndQuotes = {
             '“Sometimes you gotta work a little so you can ball a lot.” --Tom Haverford', '“I wasn’t listening but I strongly disagree with Ann.” --April Ludgate',
             '“I’m fine. It’s just that life is pointless and nothing matters and I’m always tired.” --Andy Dwyer', '“Do I look like I drink water?” --Donna Meagle',
             '“Thank god my grandfather just died, so I am fluh-uh-shed with ca-ah-ash.” --Jean-Ralphio', '“Treat yo self.” --Donna Meagle & Tom Haverford',
-            '“Are you duking on my chest right now?” --Jeremy Jamm'],
+            '“Are you dukin\' on my chest right now?” --Jeremy Jamm'],
     grabQuote: function(){
-        setInterval(rndQuotes.nextQuote, 8000);
+        setInterval(rndQuotes.nextQuote, 10000);
         $('.quote').html(rndQuotes.quotes[Math.floor(Math.random()*rndQuotes.quotes.length)]);
         rndQuotes.nextQuote();
     },

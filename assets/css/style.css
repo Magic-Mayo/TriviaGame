@@ -6,6 +6,7 @@ body {
     background-position: right;
     background-repeat: no-repeat;
     position: relative;
+    overflow: hidden;
 }
 
 .container {
@@ -24,16 +25,35 @@ body {
     color: bisque;
 }
 
+@keyframes quote-top {
+    0% {right: -800px}
+    100% {right: 105%}
+}
+
+@keyframes quote-bottom {
+    0% {left: -800px}
+    100% {left: 105%}
+}
+
+
 .quote-top {
     position: absolute;
     top: 2vh;
-    left: 1vw;
+    animation-name: quote-top;
+    animation-duration: 10.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    white-space: nowrap;
 }
 
 .quote-bottom {
     position: absolute;
     bottom: -99vh;
-    right: 1vw;
+    animation-name: quote-bottom;
+    animation-duration: 10.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    white-space: nowrap;
 }
 
 .btn {
