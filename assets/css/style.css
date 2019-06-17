@@ -25,13 +25,15 @@ body {
 }
 
 .quote-top {
-    top: 1vh;
-    left: 25%;
+    position: absolute;
+    top: 2vh;
+    left: 1vw;
 }
 
 .quote-bottom {
-    bottom: 1vh;
-    right: 25%;
+    position: absolute;
+    bottom: -99vh;
+    right: 1vw;
 }
 
 .btn {

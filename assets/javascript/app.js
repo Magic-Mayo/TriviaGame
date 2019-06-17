@@ -2,6 +2,7 @@ $('#start').on('click', function(){
     $('#start').remove();
     $('.welcome').remove();
     parksRec.trivQs();
+    // rndQuotes.grabQuote();
 })
 
 const trivia = [{
@@ -175,6 +176,29 @@ const parksRec = {
     }
 }
 
+const rndQuotes = {
+    quoteCount: 0,
+    quotes: ['"I regret nothing. The end." --Ron Swanson', '"Fishing relaxes me. It’s like yoga, except I still get to kill something." --Ron Swanson',
+            '“There’s only one thing I hate more than lying: skim milk. Which is water that’s lying about being milk.” --Ron Swanson', '"Literally..." --Chris Traeger',
+            '“I’ve cried twice in my life. Once when I was 7 and hit by a school bus. And then again when I heard that Li’l Sebastian had passed.” --Ron Swanson',
+            '“I’m a simple man. I like pretty, dark-haired women and breakfast food.” --Ron Swanson', '“Everything hurts and I’m dying.” --Leslie Knope',
+            '“Sometimes you gotta work a little so you can ball a lot.” --Tom Haverford', '“I wasn’t listening but I strongly disagree with Ann.” --April Ludgate',
+            '“I’m fine. It’s just that life is pointless and nothing matters and I’m always tired.” --Andy Dwyer', '“Do I look like I drink water?” --Donna Meagle',
+            '“Thank god my grandfather just died, so I am fluh-uh-shed with ca-ah-ash.” --Jean-Ralphio', '“Treat yo self.” --Donna Meagle & Tom Haverford',
+            '“Are you duking on my chest right now?” --Jeremy Jamm'],
+    grabQuote: function(){
+        setInterval(rndQuotes.nextQuote, 8000);
+        $('.quote').html(rndQuotes.quotes[Math.floor(Math.random()*rndQuotes.quotes.length)]);
+        rndQuotes.nextQuote();
+    },
+
+    nextQuote: function(){
+        rndQuotes.quoteCount++;
+        $('.quote').html(rndQuotes.quotes[Math.floor(Math.random()*rndQuotes.quotes.length)]);
+    }
+}
+
+rndQuotes.grabQuote();
 $(document).on('click', '.answer', function(event){
     parksRec.chosen(event);
 })
