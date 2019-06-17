@@ -7,43 +7,53 @@ $('#start').on('click', function(){
 const trivia = [{
     question: 'Who shot Ron?',
     answers: ['Tom', 'Leslie', 'Jerry', 'Andy'],
-    correctAnswer: 'Tom'},{
+    correctAnswer: 'Tom',
+    gif: 'assets/images/apology.gif'},{
 
-    // question: 'What is the objective of the game Cones of Dunshire?',
-    // answers: ['Collect cones by building civilizations', 'Collect cones by defeating other players', 'Collect cones by trading', ''],
-    // correctAnswer: 'Collect cones by building civilizations'},{
+    question: 'What is the objective of the game Cones of Dunshire?',
+    answers: ['Collect cones by building civilizations', 'Collect cones by defeating other players', 'Collect cones by trading', 'Wear the cone of Dunshire'],
+    correctAnswer: 'Collect cones by building civilizations',
+    gif: 'assets/images/cones.gif'},{
         
     question: 'Where was Leslie Knope born?',
     answers: ['Pawnee', 'Indianapolis', 'Eagleton', 'Bloomington'],
-    correctAnswer: 'Eagleton'},{
+    correctAnswer: 'Eagleton',
+    gif: 'assets/images/eagleton.gif'},{
 
-    // question: 'What is Leslie\'s middle name?',
-    // answers: ['Barbara', 'Ann', ''],
-    // correctAnswer: 'Barbara'},{
+    question: 'What is Leslie\'s middle name?',
+    answers: ['Barbara', 'Susan', 'Elizabeth', 'Grace'],
+    correctAnswer: 'Barbara',
+    gif: 'assets/images/knope.gif'},{
 
     question: 'Where did Andy live after he broke up with Ann?',
     answers: ['Ron\'s House', 'City Hall', 'Band Member\'s House', 'Lot 48 pit'],
-    correctAnswer: 'Lot 48 pit'},{
+    correctAnswer: 'Lot 48 pit',
+    gif: 'assets/images/pit.gif'},{
 
     question: 'How many albums did Duke Silver release?',
     answers: ['Six', 'Three', 'Four', 'Two'],
-    correctAnswer: 'Three'},{
+    correctAnswer: 'Three',
+    gif: 'assets/images/duke.gif'},{
 
     question: 'Whose funeral did Andy perform for?',
     answers: ['Li\'l Sebastian', 'Lil Wayne', 'Lil Yachty', 'Lil Dicky'],
-    correctAnswer: 'Li\'l Sebastian'},{
+    correctAnswer: 'Li\'l Sebastian',
+    gif: 'assets/images/sebastian.gif'},{
 
-    // question: 'What was one of the former names of Andy Dwyer\'s band?',
-    // answers: ['Everything rhymes with orange', 'Cat Dog', 'Four Doors Down', ''],
-    // correctAnswer: 'Everything rhymes with orange'},{
+    question: 'What is one of the former names of Andy\'s band?',
+    answers: ['Everything rhymes with orange', 'Cat Dog', 'Four Doors Down', ''],
+    correctAnswer: 'Everything rhymes with orange',
+    gif: 'assets/images/mouserat.gif'},{
 
     // question: 'What do you do if you\'re feeling down?',
-    // answers: ['Watch Jerry make a fool of himself', 'Treat yo\' self', 'Go to a Mouse Rat concert', ''],
-    // correctAnswer: 'Treat yo\' self'},{
+    // answers: ['Watch Jerry make a fool of himself', 'Treat yo self', 'Go to a Mouse Rat concert', ''],
+    // correctAnswer: 'Treat yo self',
+    gif: 'assets/images/treat.gif'},{
 
     question: 'What is Ron\'s #3 favorite food?',
     answers: ['Steak','Bacon','Shrimp','Burgers'],
-    correctAnswer: 'Shrimp'}]
+    correctAnswer: 'Shrimp',
+    gif: 'assets/images/bacon.gif'}]
 
 const parksRec = {
     triviaQ: trivia,
@@ -61,7 +71,7 @@ const parksRec = {
         $('.question').html('<h1>' + trivia[parksRec.question].question + '</h1>')
         $('.clock').html('Time Remaining: 10')
         for (let i = 0; i < trivia[parksRec.question].answers.length; i++){
-            $('.question').append('<button class="btn col" type="button">' + trivia[parksRec.question].answers[i] + '</button>')
+            $('.question').append('<button class="btn col answer" type="button">' + trivia[parksRec.question].answers[i] + '</button>')
         }
     },
     
@@ -87,13 +97,14 @@ const parksRec = {
         parksRec.right++;
         clearInterval(time);
         console.log(parksRec.question);
-        $('.question').empty();
-        $('.clock').html('<h1>Great!</h1>');
+        $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+        $('.clock').html('<h1>Great job!</h1>');
         if (parksRec.question == trivia.length-1){
-            parksRec.endGame();
+            $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+            setTimeout(parksRec.endGame, 3200);
         }
         else {
-            setTimeout(parksRec.nextQ, 3500);
+            setTimeout(parksRec.nextQ, 3200);
             console.log('right')
         }
     },
@@ -102,26 +113,29 @@ const parksRec = {
         parksRec.wrong++;
         clearInterval(time);
         console.log('wrong')
-        $('.question').empty();
-        $('.clock').html('<h1>Knope!</h1>');
+        $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+        $('.clock').html('<h1>Knope! That\'s not right!</h1>');
+        // $('.clock').append(trivia[parksRec.question].gif);
         if (parksRec.question == trivia.length-1){
-            parksRec.endGame();
+            $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+            setTimeout(parksRec.endGame, 3200);
         }
         else {
-            setTimeout(parksRec.nextQ, 3500);
+            setTimeout(parksRec.nextQ, 3200);
         }
     },
     
     timeUp: function(){
         parksRec.wrong++;
         clearInterval(time);
-        $('.question').empty();
+        $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
         $('.clock').html('<h1>You ran out of time!</h1>');
         if (parksRec.question == trivia.length-1){
-            parksRec.endGame();
+            $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+            setTimeout(parksRec.endGame, 3200);
         }
         else {
-            setTimeout(parksRec.nextQ, 3500);
+            setTimeout(parksRec.nextQ, 3200);
         }
     },
     
@@ -145,6 +159,6 @@ const parksRec = {
     }
 }
 
-$(document).on('click', '.question', function(event){
+$(document).on('click', '.answer', function(event){
     parksRec.chosen(event);
 })
