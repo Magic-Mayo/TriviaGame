@@ -1,47 +1,49 @@
-window.onload = function(){
-
-}
+$('#start').on('click', function(){
+    $('#start').remove();
+    $('.welcome').remove();
+    parksRec.trivQs();
+})
 
 const trivia = [{
     question: 'Who shot Ron?',
     answers: ['Tom', 'Leslie', 'Jerry', 'Andy'],
     correctAnswer: 'Tom'},{
 
-    question: 'What is the objective of the game Cones of Dunshire?',
-    answers: [],
-    correctAnswer: ''},{
+    // question: 'What is the objective of the game Cones of Dunshire?',
+    // answers: ['Collect cones by building civilizations', 'Collect cones by defeating other players', 'Collect cones by trading', ''],
+    // correctAnswer: 'Collect cones by building civilizations'},{
         
     question: 'Where was Leslie Knope born?',
-    answers: [],
+    answers: ['Pawnee', 'Indianapolis', 'Eagleton', 'Bloomington'],
     correctAnswer: 'Eagleton'},{
 
-    question: 'What is Leslie\'s middle name?',
-    answers: [],
-    correctAnswer: 'Barbara'},{
+    // question: 'What is Leslie\'s middle name?',
+    // answers: ['Barbara', 'Ann', ''],
+    // correctAnswer: 'Barbara'},{
 
     question: 'Where did Andy live after he broke up with Ann?',
-    answers: [],
-    correctAnswer: 'The pit'},{
+    answers: ['Ron\'s House', 'City Hall', 'Band Member\'s House', 'Lot 48 pit'],
+    correctAnswer: 'Lot 48 pit'},{
 
     question: 'How many albums did Duke Silver release?',
-    answers: [],
-    correctAnswer: ''},{
+    answers: ['Six', 'Three', 'Four', 'Two'],
+    correctAnswer: 'Three'},{
 
-    question: 'Who is Pawnee\'s town mascot?',
-    answers: [],
-    correctAnswer: 'Lil\' Sebastian'},{
+    question: 'Whose funeral did Andy perform for?',
+    answers: ['Li\'l Sebastian', 'Lil Wayne', 'Lil Yachty', 'Lil Dicky'],
+    correctAnswer: 'Li\'l Sebastian'},{
 
-    question: 'Tom\'s ex-wife',
-    answers: [],
-    correctAnswer: ''},{
+    // question: 'What was one of the former names of Andy Dwyer\'s band?',
+    // answers: ['Everything rhymes with orange', 'Cat Dog', 'Four Doors Down', ''],
+    // correctAnswer: 'Everything rhymes with orange'},{
 
-    question: 'What do you do if you\'re feeling down?',
-    answers: [],
-    correctAnswer: 'Treat yo\' self'},{
+    // question: 'What do you do if you\'re feeling down?',
+    // answers: ['Watch Jerry make a fool of himself', 'Treat yo\' self', 'Go to a Mouse Rat concert', ''],
+    // correctAnswer: 'Treat yo\' self'},{
 
-    question: '',
-    answers: [],
-    correctAnswer: ''}]
+    question: 'What is Ron\'s #3 favorite food?',
+    answers: ['Steak','Bacon','Shrimp','Burgers'],
+    correctAnswer: 'Shrimp'}]
 
 const parksRec = {
     triviaQ: trivia,
@@ -50,49 +52,99 @@ const parksRec = {
     rightAnswer: 0,
     wrongAnswer: 0,
     timeOut: 0,
-
+    right: 0,
+    wrong: 0,
+    
     trivQs: function(){
-        setInterval(parksRec.qCount, 1000)
-        $('.question').html('<h2>' + parksRec.question)
-        for (i in trivia[parksRec.triviaQ].answers.length){
-            $('.answer').append('<button class="btn" type="button">' + trivia[parksRec.triviaQ].answers[i] + '</button>')
+        time = setInterval(parksRec.gameClock, 1000)
+        console.log(trivia[parksRec.question].correctAnswer);
+        $('.question').html('<h1>' + trivia[parksRec.question].question + '</h1>')
+        $('.clock').html('Time Remaining: 10')
+        for (let i = 0; i < trivia[parksRec.question].answers.length; i++){
+            $('.question').append('<button class="btn col" type="button">' + trivia[parksRec.question].answers[i] + '</button>')
         }
     },
-
+    
     nextQ: function(){
-        this.question++;
-
+        parksRec.qCount = 10;
+        $('.clock').html('Time Remaining: 10')
+        parksRec.question++;
+        console.log(parksRec.question)
+        parksRec.trivQs();        
     },
-
-    correct: function(){
-        if ($(this).on('click') == trivia[parksRec.question].correctAnswer){
-            $('.show').html('Great!');
+    
+    chosen: function(){
+        clearInterval(time)
+        if (event.target.textContent == trivia[parksRec.question].correctAnswer){
+            parksRec.correct();
         }
         else {
-            parksRec.incorrect;
+            parksRec.incorrect();
         }
-        clearInterval()
     },
-
+    
+    correct: function(){
+        parksRec.right++;
+        clearInterval(time);
+        console.log(parksRec.question);
+        $('.question').empty();
+        $('.clock').html('<h1>Great!</h1>');
+        if (parksRec.question == trivia.length-1){
+            parksRec.endGame();
+        }
+        else {
+            setTimeout(parksRec.nextQ, 3500);
+            console.log('right')
+        }
+    },
+    
     incorrect: function(){
-        $('.show').html('<h1>Knope!</h1>');
+        parksRec.wrong++;
+        clearInterval(time);
+        console.log('wrong')
+        $('.question').empty();
+        $('.clock').html('<h1>Knope!</h1>');
+        if (parksRec.question == trivia.length-1){
+            parksRec.endGame();
+        }
+        else {
+            setTimeout(parksRec.nextQ, 3500);
+        }
     },
-
+    
     timeUp: function(){
-        if (this.qCount <= 0){
-            $('.show').html('<h1>You ran out of time!</h1>')
-            this.trivQs;
+        parksRec.wrong++;
+        clearInterval(time);
+        $('.question').empty();
+        $('.clock').html('<h1>You ran out of time!</h1>');
+        if (parksRec.question == trivia.length-1){
+            parksRec.endGame();
+        }
+        else {
+            setTimeout(parksRec.nextQ, 3500);
+        }
+    },
+    
+    gameClock: function(){
+        parksRec.qCount--;
+        $('.clock').html('Time Remaining: ' + parksRec.qCount);
+        if (parksRec.qCount < 0){
+            parksRec.timeUp();
         }
     },
 
-    gameClock: function(){
-        qCount--;
-
+    endGame: function(){
+        clearInterval(time);
+        $('.content').empty()
+        $('.clock').html('<h1>Lot 48 Completed!</h1>');
+        $('.clock').append('<h2>Correct: ' + parseInt(parksRec.right) + '</h2>');
+        $('.clock').append('<h2>Missed: ' + parseInt(parksRec.wrong) + '</h2');
+        setTimeout(function(){
+            $('.clock').append('<button class="btn" type="button">Restart Game</button>')
+        }, 2000)
     }
 }
-$('.true').on('click', function(){
-        console.log('this')
-})
-// Set interval and loop for cycling thru quotes
 
-// 
+$(document).on('click', '.question', function(event){
+    parksRec.chosen(event);
+})
