@@ -40,7 +40,7 @@ const trivia = [{
     answers: ['Six', 'Three', 'Four', 'Two'],
     correctAnswer: 'Three',
     gif: 'assets/images/duke.gif',
-    audio: new Audio('assets/Regret.mp3')},{
+    audio: new Audio('assets/ron.mp3')},{
 
     question: 'Whose funeral did Andy perform for?',
     answers: ['Li\'l Sebastian', 'Lil Wayne', 'Lil Yachty', 'Lil Dicky'],
@@ -163,6 +163,8 @@ const parksRec = {
         $('.clock').html('<h1>Lot 48 Completed!</h1>');
         $('.clock').append('<h2>Correct: ' + parksRec.right + '</h2>');
         $('.clock').append('<h2>Missed: ' + parksRec.wrong + '</h2');
+        const regret = new Audio('assets/Regret.mp3');
+        regret.play();
         setTimeout(function(){
             $('.clock').append('<button class="btn restart" type="button">Restart Game</button>')
             $('.clock').append('<img src=assets/images/parksandrec.jpg class="img">');
