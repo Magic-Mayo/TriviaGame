@@ -41,13 +41,13 @@ const trivia = [{
     gif: 'assets/images/sebastian.gif'},{
 
     question: 'What is one of the former names of Andy\'s band?',
-    answers: ['Everything rhymes with orange', 'Cat Dog', 'Four Doors Down', ''],
+    answers: ['Everything Rhymes with Orange', 'Cat Dog', 'Four Doors Down', 'Coneheads of Dunshire'],
     correctAnswer: 'Everything rhymes with orange',
     gif: 'assets/images/mouserat.gif'},{
 
-    // question: 'What do you do if you\'re feeling down?',
-    // answers: ['Watch Jerry make a fool of himself', 'Treat yo self', 'Go to a Mouse Rat concert', ''],
-    // correctAnswer: 'Treat yo self',
+    question: 'What do you do if you\'re feeling down?',
+    answers: ['Watch Jerry make a fool of himself', 'Treat yo self', 'Go to a Mouse Rat concert', 'Go to JJ\'s diner'],
+    correctAnswer: 'Treat yo self',
     gif: 'assets/images/treat.gif'},{
 
     question: 'What is Ron\'s #3 favorite food?',
@@ -61,7 +61,6 @@ const parksRec = {
     qCount: 10,
     rightAnswer: 0,
     wrongAnswer: 0,
-    timeOut: 0,
     right: 0,
     wrong: 0,
     
@@ -71,7 +70,8 @@ const parksRec = {
         $('.question').html('<h1>' + trivia[parksRec.question].question + '</h1>')
         $('.clock').html('Time Remaining: 10')
         for (let i = 0; i < trivia[parksRec.question].answers.length; i++){
-            $('.question').append('<button class="btn col answer" type="button">' + trivia[parksRec.question].answers[i] + '</button>')
+            $('.question').append('<button class="btn col answer" type="button">' +
+            trivia[parksRec.question].answers[i] + '</button>')
         }
     },
     
@@ -101,10 +101,10 @@ const parksRec = {
         $('.clock').html('<h1>Great job!</h1>');
         if (parksRec.question == trivia.length-1){
             $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
-            setTimeout(parksRec.endGame, 3200);
+            setTimeout(parksRec.endGame, 4000);
         }
         else {
-            setTimeout(parksRec.nextQ, 3200);
+            setTimeout(parksRec.nextQ, 4000);
             console.log('right')
         }
     },
@@ -118,10 +118,10 @@ const parksRec = {
         // $('.clock').append(trivia[parksRec.question].gif);
         if (parksRec.question == trivia.length-1){
             $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
-            setTimeout(parksRec.endGame, 3200);
+            setTimeout(parksRec.endGame, 4000);
         }
         else {
-            setTimeout(parksRec.nextQ, 3200);
+            setTimeout(parksRec.nextQ, 4000);
         }
     },
     
@@ -132,10 +132,10 @@ const parksRec = {
         $('.clock').html('<h1>You ran out of time!</h1>');
         if (parksRec.question == trivia.length-1){
             $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
-            setTimeout(parksRec.endGame, 3200);
+            setTimeout(parksRec.endGame, 4000);
         }
         else {
-            setTimeout(parksRec.nextQ, 3200);
+            setTimeout(parksRec.nextQ, 4000);
         }
     },
     
@@ -149,16 +149,36 @@ const parksRec = {
 
     endGame: function(){
         clearInterval(time);
-        $('.content').empty()
+        $('.content').empty();
         $('.clock').html('<h1>Lot 48 Completed!</h1>');
-        $('.clock').append('<h2>Correct: ' + parseInt(parksRec.right) + '</h2>');
-        $('.clock').append('<h2>Missed: ' + parseInt(parksRec.wrong) + '</h2');
+        $('.clock').append('<h2>Correct: ' + parksRec.right + '</h2>');
+        $('.clock').append('<h2>Missed: ' + parksRec.wrong + '</h2');
         setTimeout(function(){
-            $('.clock').append('<button class="btn" type="button">Restart Game</button>')
+            $('.clock').append('<button class="btn restart" type="button">Restart Game</button>')
+            $('.clock').append('<img src=assets/images/parksandrec.jpg class="img">');
         }, 2000)
+    },
+
+    restart: function(){
+        question = 0,
+        rightAnswer = 0,
+        wrongAnswer = 0,
+        right = 0,
+        wrong = 0,
+        $('.container').html(`'<h4 class="clock"></h4><div class="content"><h1 class="welcome">\
+        Parks and Rec Trivia!!</h1><button class="btn" id="start" type="button">BEGIN</button>\
+        <div class="row"><div class="col question"></div></div>'`);
+        $('#start').on('click', function(){
+            $('#start').remove();
+            $('.welcome').remove();
+            parksRec.trivQs();
+        })
     }
 }
 
 $(document).on('click', '.answer', function(event){
     parksRec.chosen(event);
+})
+$(document).on('click', '.restart', function(event){
+    parksRec.restart();
 })
