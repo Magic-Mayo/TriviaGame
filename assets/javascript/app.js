@@ -160,11 +160,11 @@ const parksRec = {
     },
 
     restart: function(){
-        question = 0,
-        rightAnswer = 0,
-        wrongAnswer = 0,
-        right = 0,
-        wrong = 0,
+        parksRec.question = 0,
+        parksRec.rightAnswer = 0,
+        parksRec.wrongAnswer = 0,
+        parksRec.right = 0,
+        parksRec.wrong = 0,
         $('.container').html(`'<h4 class="clock"></h4><div class="content"><h1 class="welcome">\
         Parks and Rec Trivia!!</h1><button class="btn" id="start" type="button">BEGIN</button>\
         <div class="row"><div class="col question"></div></div>'`);
