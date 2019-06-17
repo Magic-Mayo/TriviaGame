@@ -97,10 +97,10 @@ const parksRec = {
         parksRec.right++;
         clearInterval(time);
         console.log(parksRec.question);
-        $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+        $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
         $('.clock').html('<h1>Great job!</h1>');
         if (parksRec.question == trivia.length-1){
-            $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+            $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
             setTimeout(parksRec.endGame, 4000);
         }
         else {
@@ -113,11 +113,10 @@ const parksRec = {
         parksRec.wrong++;
         clearInterval(time);
         console.log('wrong')
-        $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+        $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
         $('.clock').html('<h1>Knope! That\'s not right!</h1>');
-        // $('.clock').append(trivia[parksRec.question].gif);
         if (parksRec.question == trivia.length-1){
-            $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+            $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
             setTimeout(parksRec.endGame, 4000);
         }
         else {
@@ -128,10 +127,10 @@ const parksRec = {
     timeUp: function(){
         parksRec.wrong++;
         clearInterval(time);
-        $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+        $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
         $('.clock').html('<h1>You ran out of time!</h1>');
         if (parksRec.question == trivia.length-1){
-            $('.question').html('<img src="' + trivia[parksRec.question].gif + '">');
+            $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
             setTimeout(parksRec.endGame, 4000);
         }
         else {
