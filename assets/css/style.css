@@ -39,7 +39,7 @@ body {
     position: absolute;
     top: 2vh;
     animation-name: quote-top;
-    animation-duration: 10.2s;
+    animation-duration: 10s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     white-space: nowrap;
@@ -49,7 +49,7 @@ body {
     position: absolute;
     bottom: -99vh;
     animation-name: quote-bottom;
-    animation-duration: 10.2s;
+    animation-duration: 10s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     white-space: nowrap;
