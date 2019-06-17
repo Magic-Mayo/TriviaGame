@@ -9,52 +9,62 @@ const trivia = [{
     question: 'Who shot Ron?',
     answers: ['Tom', 'Leslie', 'Jerry', 'Andy'],
     correctAnswer: 'Tom',
-    gif: 'assets/images/apology.gif'},{
+    gif: 'assets/images/apology.gif',
+    audio: new Audio('assets/Amazing.mp3')},{
 
     question: 'What is the objective of the game Cones of Dunshire?',
     answers: ['Collect cones by building civilizations', 'Collect cones by defeating other players', 'Collect cones by trading', 'Wear the cone of Dunshire'],
     correctAnswer: 'Collect cones by building civilizations',
-    gif: 'assets/images/cones.gif'},{
+    gif: 'assets/images/cones.gif',
+    audio: new Audio('assets/cones.mp3')},{
         
     question: 'Where was Leslie Knope born?',
     answers: ['Pawnee', 'Indianapolis', 'Eagleton', 'Bloomington'],
     correctAnswer: 'Eagleton',
-    gif: 'assets/images/eagleton.gif'},{
+    gif: 'assets/images/eagleton.gif',
+    audio: new Audio('assets/Eagleton.mp3')},{
 
     question: 'What is Leslie\'s middle name?',
     answers: ['Barbara', 'Susan', 'Elizabeth', 'Grace'],
     correctAnswer: 'Barbara',
-    gif: 'assets/images/knope.gif'},{
+    gif: 'assets/images/knope.gif',
+    audio: new Audio('assets/WTF.mp3')},{
 
     question: 'Where did Andy live after he broke up with Ann?',
     answers: ['Ron\'s House', 'City Hall', 'Band Member\'s House', 'Lot 48 pit'],
     correctAnswer: 'Lot 48 pit',
-    gif: 'assets/images/pit.gif'},{
+    gif: 'assets/images/pit.gif',
+    audio: new Audio('assets/FBI.mp3')},{
 
     question: 'How many albums did Duke Silver release?',
     answers: ['Six', 'Three', 'Four', 'Two'],
     correctAnswer: 'Three',
-    gif: 'assets/images/duke.gif'},{
+    gif: 'assets/images/duke.gif',
+    audio: new Audio('assets/Regret.mp3')},{
 
     question: 'Whose funeral did Andy perform for?',
     answers: ['Li\'l Sebastian', 'Lil Wayne', 'Lil Yachty', 'Lil Dicky'],
     correctAnswer: 'Li\'l Sebastian',
-    gif: 'assets/images/sebastian.gif'},{
+    gif: 'assets/images/sebastian.gif',
+    audio: new Audio('assets/allergic.mp3')},{
 
     question: 'What is one of the former names of Andy\'s band?',
     answers: ['Everything Rhymes with Orange', 'Cat Dog', 'Four Doors Down', 'Coneheads of Dunshire'],
     correctAnswer: 'Everything rhymes with orange',
-    gif: 'assets/images/mouserat.gif'},{
+    gif: 'assets/images/mouserat.gif',
+    audio: new Audio('assets/mouserat.mp3')},{
 
     question: 'What do you do if you\'re feeling down?',
     answers: ['Watch Jerry make a fool of himself', 'Treat yo self', 'Go to a Mouse Rat concert', 'Go to JJ\'s diner'],
     correctAnswer: 'Treat yo self',
-    gif: 'assets/images/treat.gif'},{
+    gif: 'assets/images/treat.gif',
+    audio: new Audio('assets/treatyoself.mp3')},{
 
     question: 'What is Ron\'s #3 favorite food?',
     answers: ['Steak','Bacon','Shrimp','Burgers'],
     correctAnswer: 'Shrimp',
-    gif: 'assets/images/bacon.gif'}]
+    gif: 'assets/images/bacon.gif',
+    audio: new Audio('assets/bacon.mp3')}]
 
 const parksRec = {
     triviaQ: trivia,
@@ -97,31 +107,30 @@ const parksRec = {
     correct: function(){
         parksRec.right++;
         clearInterval(time);
-        console.log(parksRec.question);
         $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
+        trivia[parksRec.question].audio.play();
         $('.clock').html('<h1>Great job!</h1>');
         if (parksRec.question == trivia.length-1){
             $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
-            setTimeout(parksRec.endGame, 4000);
+            setTimeout(parksRec.endGame, 5500);
         }
         else {
-            setTimeout(parksRec.nextQ, 4000);
-            console.log('right')
+            setTimeout(parksRec.nextQ, 5500);
         }
     },
     
     incorrect: function(){
         parksRec.wrong++;
         clearInterval(time);
-        console.log('wrong')
         $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
+        trivia[parksRec.question].audio.play();
         $('.clock').html('<h1>Knope! That\'s not right!</h1>');
         if (parksRec.question == trivia.length-1){
             $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
-            setTimeout(parksRec.endGame, 4000);
+            setTimeout(parksRec.endGame, 5500);
         }
         else {
-            setTimeout(parksRec.nextQ, 4000);
+            setTimeout(parksRec.nextQ, 5500);
         }
     },
     
@@ -129,13 +138,14 @@ const parksRec = {
         parksRec.wrong++;
         clearInterval(time);
         $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
+        trivia[parksRec.question].audio.play();
         $('.clock').html('<h1>You ran out of time!</h1>');
         if (parksRec.question == trivia.length-1){
             $('.question').html('<img src="' + trivia[parksRec.question].gif + '" class="img-fluid">');
-            setTimeout(parksRec.endGame, 4000);
+            setTimeout(parksRec.endGame, 5500);
         }
         else {
-            setTimeout(parksRec.nextQ, 4000);
+            setTimeout(parksRec.nextQ, 5500);
         }
     },
     
