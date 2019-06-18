@@ -177,9 +177,10 @@ const parksRec = {
         parksRec.wrongAnswer = 0,
         parksRec.right = 0,
         parksRec.wrong = 0,
+        rndQuotes.grabQuote(),
         $('.container').html(`'<h4 class="clock"></h4><div class="content"><h1 class="welcome">\
         Parks and Rec Trivia!!</h1><button class="btn" id="start" type="button">BEGIN</button>\
-        <div class="row"><div class="col question"></div></div>'`);
+        <div class="row"><div class="col question"></div></div>'`),
         $('#start').on('click', function(){
             $('#start').remove();
             $('.welcome').remove();
@@ -199,14 +200,14 @@ const rndQuotes = {
             '“Thank god my grandfather just died, so I am fluh-uh-shed with ca-ah-ash.” --Jean-Ralphio', '“Treat yo self.” --Donna Meagle & Tom Haverford',
             '“Are you dukin\' on my chest right now?” --Jeremy Jamm'],
     grabQuote: function(){
-        setInterval(rndQuotes.nextQuote, 10000);
-        $('.quote').html(rndQuotes.quotes[Math.floor(Math.random()*rndQuotes.quotes.length)]);
+        setInterval(rndQuotes.nextQuote, 6000);
+        $('.quote').html(rndQuotes.quotes[rndQuotes.quoteCount]);
         rndQuotes.nextQuote();
     },
 
     nextQuote: function(){
         rndQuotes.quoteCount++;
-        $('.quote').html(rndQuotes.quotes[Math.floor(Math.random()*rndQuotes.quotes.length)]);
+        $('.quote').html(rndQuotes.quotes[rndQuotes.quoteCount]);
     }
 }
 
