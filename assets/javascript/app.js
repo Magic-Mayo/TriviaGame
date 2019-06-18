@@ -78,7 +78,7 @@ const parksRec = {
     trivQs: function(){
         time = setInterval(parksRec.gameClock, 1000)
         console.log(trivia[parksRec.question].correctAnswer);
-        $('.question').html('<h1>' + trivia[parksRec.question].question + '</h1>')
+        $('.question').html('<h1 class="resp-question">' + trivia[parksRec.question].question + '</h1>')
         $('.clock').html('Time Remaining: 10')
         for (let i = 0; i < trivia[parksRec.question].answers.length; i++){
             $('.question').append('<button class="btn col answer" type="button">' +
@@ -163,11 +163,11 @@ const parksRec = {
         $('.clock').html('<h1>Lot 48 Completed!</h1>');
         $('.clock').append('<h2>Correct: ' + parksRec.right + '</h2>');
         $('.clock').append('<h2>Missed: ' + parksRec.wrong + '</h2');
+        $('body').css("background-image", "url('assets/images/parksandrec.jpg')")
         const regret = new Audio('assets/Regret.mp3');
         regret.play();
         setTimeout(function(){
             $('.clock').append('<button class="btn restart" type="button">Restart Game</button>')
-            $('.clock').append('<img src=assets/images/parksandrec.jpg class="img">');
         }, 2000)
     },
 

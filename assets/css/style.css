@@ -67,3 +67,28 @@ body {
     max-width: 508px;
     height: auto;
 }
+
+@media screen and (max-width: 768px){
+    body {
+        background-image: url('../images/leslie.jpg');
+        background-attachment: fixed;
+        background-position: bottom
+    }
+
+    .quote {
+        display: none;
+    }
+
+    .container {
+        top: 0;
+        font-size: 1.5em
+    }
+
+    .answer {
+        font-size: .965em
+    }
+
+    .resp-question {
+        font-size: 1em
+    }
+}
