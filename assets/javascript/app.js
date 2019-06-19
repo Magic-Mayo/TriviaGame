@@ -2,9 +2,11 @@ $('#start').on('click', function(){
     $('#start').remove();
     $('.welcome').remove();
     parksRec.trivQs();
-    // rndQuotes.grabQuote();
+    theme.pause()
 })
 
+const theme = new Audio('assets/theme.mp3')
+window.onload = function(){theme.play()}
 const trivia = [{
     question: 'Who shot Ron?',
     answers: ['Tom', 'Leslie', 'Jerry', 'Andy'],
