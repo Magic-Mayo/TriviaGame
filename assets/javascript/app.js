@@ -52,7 +52,7 @@ const trivia = [{
 
     question: 'What is one of the former names of Andy\'s band?',
     answers: ['Everything Rhymes with Orange', 'Cat Dog', 'Four Doors Down', 'Coneheads of Dunshire'],
-    correctAnswer: 'Everything rhymes with orange',
+    correctAnswer: 'Everything Rhymes with Orange',
     gif: 'assets/images/mouserat.gif',
     audio: new Audio('assets/mouserat.mp3')},{
 
@@ -162,14 +162,14 @@ const parksRec = {
     endGame: function(){
         clearInterval(time);
         $('.content').empty();
-        $('.clock').html('<h1>Lot 48 Completed!</h1>');
+        $('.clock').html('<h1>Lot 48 Completed!</h1>').css('color', '#ffffff');
         $('.clock').append('<h2>Correct: ' + parksRec.right + '</h2>');
         $('.clock').append('<h2>Missed: ' + parksRec.wrong + '</h2');
-        $('body').css("background-image", "url('assets/images/parksandrec.jpg')")
+        $('body').css("background-image", "url('assets/images/parksandrec.jpg')");
         const regret = new Audio('assets/Regret.mp3');
         regret.play();
         setTimeout(function(){
-            $('.clock').append('<button class="btn restart" type="button">Restart Game</button>')
+            $('.clock').append('<button class="btn restart" type="button">Restart Game</button>').css('color', '#ffffff')
         }, 2000)
     },
 
@@ -182,8 +182,11 @@ const parksRec = {
         rndQuotes.grabQuote(),
         $('.container').html(`'<h4 class="clock"></h4><div class="content"><h1 class="welcome">\
         Parks and Rec Trivia!!</h1><button class="btn" id="start" type="button">BEGIN</button>\
-        <div class="row"><div class="col question"></div></div>'`),
+        <div class="row"><div class="col question"></div></div>'`).css('color', '#ffffff'),
         $('#start').on('click', function(){
+            $('.clock').css('color', '#000000');
+            $('container').css('color', '#000000');
+            $('body').css("background-image", "url('assets/images/Wiki-background.jpg')");
             $('#start').remove();
             $('.welcome').remove();
             parksRec.trivQs();
